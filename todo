@@ -1,0 +1,67 @@
+Komutlar
+Komutların değerleri
+https://server.streamavatars.com/viewer.html?channel_id=110218736&platform=twitch
+ayar dizini:
+	avatars
+	backgrounds
+	export
+	import
+	error.log
+	
+general:
+	ui window ile resize olacak
+
+
+itemlist===
+general
+login details
+bot commands
+bot options
+minigames
+steamworkshop
+
+userediting
+====
+login detail: get token image
+max spawn
+spawn: herkes + chat + aboneler 
+auto connect
+hide mouse
+game window size
+delete data and image ???
+
+minigames
+battleroyale
+basket
+duel
+
+beyaz liste > item varsa sadece bunlar
+kara liste
+bot
+delete list
+
+
+avatars
+width, height, scale
+enable
+acceleration
+speed
+collision
+idle, walk, stand, sleep, attack 
+fps ayarı
+animasyon sonrası
+loop
+
+
+shop
+avatar list 
+bits, gift, mods, abone, takipçi seçenekler
+action altında hareket kısıtlaması ???
+
+
+Oyun ekranı
+avatar ve name scale
+
+üst bar auto hide
+iğne, yıldız, bomba, sapan
+statik alan yerleştirme

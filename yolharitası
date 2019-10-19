@@ -1,0 +1,31 @@
+Program açıldığında ayarlar okunacak.
+Her ayar değişikliği anında kayıt edilip sinyal olarak yayılacak(ayarlar tekrar okunacak)
+twitch token yok ise uyarı verecek.
+connect düğmesi pasif olacak(token yoksa)
+token isteğinde bulununca arka planda basit http server çalışacak ve tokeni alınca kapanacak.
+tokeni ayarlara yazınca sinyal ile bilgiyi yayacak
+program açılışında ayarlar gözükecek.
+twitch ya da youtube dan token isteğinde bulunmadan oyun kısmı açılamayacak
+tokeni alabilmek için redirect url ye regedite girilen protokol yazılacak.
+uygulama pipeline vasıtasıyla tokeni alacak.
+Bağlan denildiğinde chata bağlanıp join olmuş kişilerden avatar oluşturup ekrana ekleyecek
+(beyaz liste elemanı var ise sadece onlar olacak(chatte ise). Karalistedekiler eklenmeyecek)
+(kişinin seçtiği avatar var ise onunla spawn olacak.)
+kişiden gelen komutları okuyup uygulayacak.
+
+oyun ekranı
+===========
+ekranın el alt kısmına ve kenarlara otomatik collision eklenecek.
+merdiven eklenebilecek
+
+ilk açılış:
+chatte olanlar listelenecek giren çıkan kontrolü yapılacak
+beyaz liste, kara liste kontrolü yapılacak.
+filtreden geçen kişiler spawn olacak.
+random yürüme-durma animasyonları.
+! ile başlayan komutlar ile avatar kontrolü yapılacak.
+bits, bağış(!), takip ve abonelik olunca avatarlar dans gibi bir aktivite yapabilir.
+kanal sahibi etkinlik düzenleyebilir (! ile başlayan komutlar ile ve sadece kendisi ya da mod)
+
+total takipçi tutulacak. timer ile ara ara sorgulanacak. eğer artış varsa artan kadar isim çağrılacak ve dans
+azalma varsa total değişkeni düşen değere ayarlanacak.
