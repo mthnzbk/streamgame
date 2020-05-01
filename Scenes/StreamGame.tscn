@@ -1,54 +1,55 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Avatar.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Textures/icon.png" type="Texture" id=2]
 [ext_resource path="res://Textures/static.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/StreamGame.gd" type="Script" id=4]
-
-[sub_resource type="PhysicsMaterial" id=1]
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 29.8003, 30.8095 )
 
 [node name="StreamGame" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="BarContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
+[node name="Avatars" type="Node2D" parent="."]
+
+[node name="Position" type="Position2D" parent="."]
+position = Vector2( 580.88, 266.633 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
 margin_right = 1280.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 1280, 0 )
-size_flags_horizontal = 3
-custom_constants/margin_right = 40
-custom_constants/margin_top = 10
-custom_constants/margin_left = 40
-custom_constants/margin_bottom = 10
+margin_bottom = 58.0
 __meta__ = {
-"_edit_lock_": true
+"_edit_lock_": true,
+"_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BarContainer"]
-margin_left = 40.0
+[node name="BarContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 51.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 10
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/BarContainer"]
+margin_left = 24.0
 margin_top = 10.0
-margin_right = 1240.0
+margin_right = 1242.0
 margin_bottom = 34.0
 size_flags_horizontal = 11
 custom_constants/separation = 10
 
-[node name="PanelContainer" type="HBoxContainer" parent="BarContainer/VBoxContainer"]
-margin_right = 1200.0
+[node name="PanelContainer" type="HBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer"]
+margin_right = 1218.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="DisconnectButton" type="Button" parent="BarContainer/VBoxContainer/PanelContainer"]
+[node name="DisconnectButton" type="Button" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer"]
 margin_right = 140.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 140, 0 )
 text = "Disconnect"
 
-[node name="MenuButton2" type="OptionButton" parent="BarContainer/VBoxContainer/PanelContainer"]
+[node name="MenuButton2" type="OptionButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer"]
 margin_left = 160.0
 margin_right = 300.0
 margin_bottom = 24.0
@@ -57,76 +58,77 @@ text = "none"
 items = [ "none", null, false, 0, null ]
 selected = 0
 
-[node name="QuickAccessButton" type="Button" parent="BarContainer/VBoxContainer/PanelContainer"]
-margin_left = 460.0
-margin_right = 600.0
+[node name="QuickAccessButton" type="Button" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer"]
+margin_left = 466.0
+margin_right = 606.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 14
+toggle_mode = true
 text = "Quick Access"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BarContainer/VBoxContainer/PanelContainer"]
-margin_left = 644.0
-margin_right = 900.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer"]
+margin_left = 656.0
+margin_right = 912.0
 margin_bottom = 24.0
 size_flags_horizontal = 10
 custom_constants/separation = 10
 
-[node name="ESC" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="ESC" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_right = 28.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="Bomb" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Bomb" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 38.0
 margin_right = 66.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="Sapan" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Sapan" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 76.0
 margin_right = 104.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="Collide" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Collide" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 114.0
 margin_right = 142.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="Spawn" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Spawn" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 152.0
 margin_right = 180.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="Star" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Star" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 190.0
 margin_right = 218.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="Tuttur" type="ToolButton" parent="BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Tuttur" type="ToolButton" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 margin_left = 228.0
 margin_right = 256.0
 margin_bottom = 24.0
 icon = ExtResource( 3 )
 
-[node name="AutoHide" type="CheckBox" parent="BarContainer/VBoxContainer/PanelContainer"]
-margin_left = 1107.0
-margin_right = 1200.0
+[node name="AutoHide" type="CheckBox" parent="PanelContainer/BarContainer/VBoxContainer/PanelContainer"]
+margin_left = 1125.0
+margin_right = 1218.0
 margin_bottom = 24.0
 size_flags_horizontal = 10
 text = "Auto-Hide"
 
-[node name="QuickAccessContainer" type="HBoxContainer" parent="BarContainer/VBoxContainer"]
+[node name="QuickAccessContainer" type="HBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer"]
 visible = false
 margin_top = 34.0
 margin_right = 1200.0
 margin_bottom = 90.0
 
-[node name="Button" type="Button" parent="BarContainer/VBoxContainer/QuickAccessContainer"]
+[node name="Button" type="Button" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer"]
 margin_top = 13.0
 margin_right = 140.0
 margin_bottom = 43.0
@@ -135,17 +137,17 @@ size_flags_horizontal = 2
 size_flags_vertical = 6
 text = "Background Color"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BarContainer/VBoxContainer/QuickAccessContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer"]
 margin_left = 891.0
 margin_right = 1200.0
 margin_bottom = 56.0
 size_flags_horizontal = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer"]
 margin_right = 309.0
 margin_bottom = 16.0
 
-[node name="Label" type="Label" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer"]
 margin_left = 68.0
 margin_top = 1.0
 margin_right = 105.0
@@ -153,7 +155,7 @@ margin_bottom = 15.0
 size_flags_horizontal = 10
 text = "Scale:"
 
-[node name="HSlider" type="HSlider" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer"]
 margin_left = 109.0
 margin_right = 309.0
 margin_bottom = 16.0
@@ -165,12 +167,12 @@ step = 0.1
 value = 1.0
 ticks_on_borders = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer"]
 margin_top = 20.0
 margin_right = 309.0
 margin_bottom = 36.0
 
-[node name="Label2" type="Label" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 26.0
 margin_top = 1.0
 margin_right = 105.0
@@ -178,7 +180,7 @@ margin_bottom = 15.0
 size_flags_horizontal = 10
 text = "Name Scale:"
 
-[node name="HSlider2" type="HSlider" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer2"]
+[node name="HSlider2" type="HSlider" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 109.0
 margin_right = 309.0
 margin_bottom = 16.0
@@ -189,19 +191,19 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer"]
 margin_top = 40.0
 margin_right = 309.0
 margin_bottom = 56.0
 
-[node name="Label3" type="Label" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label3" type="Label" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer3"]
 margin_top = 1.0
 margin_right = 105.0
 margin_bottom = 15.0
 size_flags_horizontal = 10
 text = "Nametag Stacks:"
 
-[node name="HSlider3" type="HSlider" parent="BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer3"]
+[node name="HSlider3" type="HSlider" parent="PanelContainer/BarContainer/VBoxContainer/QuickAccessContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 109.0
 margin_right = 309.0
 margin_bottom = 16.0
@@ -211,34 +213,6 @@ min_value = 1.0
 max_value = 2.0
 step = 0.1
 value = 1.0
-
-[node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 321.729, 305.907 )
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2( 399.381, 128.014 )
-physics_material_override = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource( 2 )
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
-position = Vector2( 524.535, 189.23 )
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D2"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
-shape = SubResource( 2 )
-
-[node name="RigidBody2D3" type="RigidBody2D" parent="."]
-position = Vector2( 214.371, 204.194 )
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D3"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
-shape = SubResource( 2 )
+[connection signal="pressed" from="PanelContainer/BarContainer/VBoxContainer/PanelContainer/DisconnectButton" to="." method="_on_DisconnectButton_pressed"]
+[connection signal="toggled" from="PanelContainer/BarContainer/VBoxContainer/PanelContainer/QuickAccessButton" to="." method="_on_QuickAccessButton_toggled"]
+[connection signal="toggled" from="PanelContainer/BarContainer/VBoxContainer/PanelContainer/AutoHide" to="." method="_on_AutoHide_toggled"]

@@ -1,23 +1,33 @@
 {
-    "general": {
-        "auto_connect": true,
-        "fps": 60,
-        "hide_mouse_cursor": true,
-        "max_avatars": 80,
-        "spawning": [
-            "everyone",
-            "chat"
-        ],
-        "window_height": 720,
-        "window_width": 1280
-    },
-    "twitch": {
-        "expires_in": "",
-        "login_id": "",
-        "login_name": "",
-        "refresh_token": "",
-        "scope": [],
-        "token": "",
-        "token_type": ""
-    }
+	"language": 0,
+	"stream": {
+		"auto_hide": false,
+		
+	},
+	"general": {
+		"auto_connect": false,
+		"hide_mouse_cursor": false,
+		"max_avatars": 80,
+		"spawning": [
+			0,
+			0
+		],
+		"default_avatar": 0,
+		"window_height": 720,
+		"window_width": 1280
+	},
+	"twitch": {
+		"expires_in": "",
+		"login_id": "",
+		"login_name": "",
+		"refresh_token": "",
+		"scope": [],
+		"access_token": "",
+		"token_type": ""
+	},
+	"user_editing": {
+		"whitelist": [],
+		"blacklist": [],
+		"modlist": []
+	},
 }

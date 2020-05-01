@@ -23,10 +23,15 @@ config/icon="res://icon.png"
 
 [autoload]
 
-BasicHttpServer="*res://BasicHttpServer.gd"
-Ayarlar="*res://Ayarlar.gd"
-OAuth="*res://OAuth.gd"
-WebSocketIRC="*res://WebSocketIRC.gd"
+BasicHttpServer="*res://Scripts/BasicHttpServer.gd"
+Ayarlar="*res://Scripts/Ayarlar.gd"
+OAuth="*res://Scripts/OAuth.gd"
+WebSocketIRC="*res://Scripts/WebSocketIRC.gd"
+IRCClient="*res://Scripts/IRCClient.gd"
+
+[debug]
+
+gdscript/completion/autocomplete_setters_and_getters=true
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Data/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=2]
@@ -6,14 +6,16 @@
 [ext_resource path="res://Textures/icon.png" type="Texture" id=4]
 [ext_resource path="res://Textures/hebele.png" type="Texture" id=5]
 [ext_resource path="res://Textures/static.png" type="Texture" id=6]
+[ext_resource path="res://Textures/connect.png" type="Texture" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
+size = 20
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0980392, 0.113725, 0.152941, 1 )
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.12549, 0.141176, 0.192157, 1 )
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -40,16 +42,19 @@ dragger_visibility = 2
 margin_right = 200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
+disabled = true
 text = "Connect"
-icon = ExtResource( 3 )
+icon = ExtResource( 7 )
+expand_icon = true
 
 [node name="MenuList" type="ItemList" parent="HSplitContainer/VSplitContainer"]
 margin_top = 40.0
 margin_right = 200.0
 margin_bottom = 720.0
 rect_min_size = Vector2( 200, 0 )
-custom_fonts/font = SubResource( 2 )
-items = [ "General", null, false, "Login Details", null, false, "Bot Commands", null, false, "Bot Options", null, false, "Minigames", null, false, "Steam Workshop", null, false, "Avatars", null, false, "Background", null, false, "Nametags", null, false, "Import&Export", null, false, "Shop Editing", null, false, "User Editing", null, false ]
+custom_fonts/font = SubResource( 1 )
+custom_constants/vseparation = 5
+items = [ "General", null, false, "Login Details", null, false, "Bot Commands", null, false, "Bot Options", null, false, "Minigames", null, true, "Steam Workshop", null, true, "Avatars", null, false, "Background", null, true, "Nametags", null, true, "Shop Editing", null, true, "User Editing", null, false ]
 
 [node name="VSplitContainer2" type="VSplitContainer" parent="HSplitContainer"]
 margin_left = 200.0
@@ -61,8 +66,73 @@ dragger_visibility = 2
 [node name="PanelContainer" type="PanelContainer" parent="HSplitContainer/VSplitContainer2"]
 margin_right = 1080.0
 margin_bottom = 40.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/PanelContainer"]
+margin_right = 1080.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
-custom_styles/panel = SubResource( 1 )
+size_flags_horizontal = 9
+custom_constants/margin_right = 30
+custom_constants/margin_left = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer"]
+margin_left = 30.0
+margin_right = 1050.0
+margin_bottom = 40.0
+size_flags_horizontal = 9
+custom_constants/separation = 30
+
+[node name="SaveButton" type="Button" parent="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 300.0
+margin_top = 3.0
+margin_right = 420.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 120, 34 )
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Save & Reload"
+
+[node name="OpenFolderButton" type="Button" parent="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 450.0
+margin_top = 3.0
+margin_right = 570.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 120, 34 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Open Folder"
+
+[node name="DocButton" type="Button" parent="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 600.0
+margin_top = 3.0
+margin_right = 720.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 120, 34 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Documentation"
+
+[node name="LangLabel" type="Label" parent="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 750.0
+margin_top = 3.0
+margin_right = 870.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 120, 34 )
+text = "Language:"
+align = 2
+valign = 1
+
+[node name="LangOptionButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 900.0
+margin_top = 3.0
+margin_right = 1020.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 120, 34 )
+size_flags_vertical = 4
+text = "English"
+items = [ "English", null, false, 0, null, "Turkish", null, false, 1, null ]
+selected = 0
 
 [node name="TabContainer" type="TabContainer" parent="HSplitContainer/VSplitContainer2"]
 margin_top = 40.0
@@ -71,7 +141,6 @@ margin_bottom = 720.0
 tabs_visible = false
 
 [node name="General" type="ScrollContainer" parent="HSplitContainer/VSplitContainer2/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -85,7 +154,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General"]
 margin_right = 1072.0
-margin_bottom = 785.0
+margin_bottom = 453.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 30
 custom_constants/margin_top = 20
@@ -96,39 +165,39 @@ custom_constants/margin_bottom = 20
 margin_left = 30.0
 margin_top = 20.0
 margin_right = 1042.0
-margin_bottom = 765.0
+margin_bottom = 433.0
 custom_constants/separation = 20
 
 [node name="\?\?\?" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
-margin_right = 1000.0
+margin_right = 1012.0
 
 [node name="VBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
 margin_top = 20.0
-margin_right = 1000.0
+margin_right = 1012.0
 margin_bottom = 124.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_right = 490.0
+margin_right = 496.0
 margin_bottom = 104.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
-margin_right = 490.0
+margin_right = 496.0
 margin_bottom = 14.0
 text = "Viewer Spawning"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 24.0
-margin_right = 490.0
+margin_right = 496.0
 margin_bottom = 38.0
 text = "Choose which viewers get an avatar"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 48.0
-margin_right = 490.0
+margin_right = 496.0
 margin_bottom = 72.0
 custom_constants/separation = 20
 
@@ -138,16 +207,17 @@ margin_right = 114.0
 margin_bottom = 19.0
 text = "Max Avatar Spawn"
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+[node name="MaxAvatarSpawn" type="SpinBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
 margin_left = 134.0
 margin_right = 214.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 80, 0 )
-text = "80"
+max_value = 255.0
+value = 80.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 82.0
-margin_right = 490.0
+margin_right = 496.0
 margin_bottom = 104.0
 custom_constants/separation = 20
 
@@ -157,7 +227,7 @@ margin_right = 89.0
 margin_bottom = 18.0
 text = "Avatar Profile:"
 
-[node name="OptionButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+[node name="DefaultAvatarButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
 margin_left = 109.0
 margin_right = 249.0
 margin_bottom = 22.0
@@ -173,16 +243,16 @@ margin_bottom = 22.0
 text = "D"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 510.0
-margin_right = 1000.0
+margin_left = 516.0
+margin_right = 1012.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 custom_constants/separation = 20
 
-[node name="OptionButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 40.0
-margin_right = 180.0
+[node name="WhoButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 42.0
+margin_right = 182.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 6
@@ -191,16 +261,16 @@ items = [ "Everyone", null, false, 0, null, "Follow and Sub", null, false, 1, nu
 selected = 0
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 241.0
+margin_left = 244.0
 margin_top = 3.0
-margin_right = 249.0
+margin_right = 252.0
 margin_bottom = 17.0
 size_flags_horizontal = 4
 text = "+"
 
-[node name="OptionButton2" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 309.0
-margin_right = 449.0
+[node name="HowButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 314.0
+margin_right = 454.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 6
@@ -210,96 +280,97 @@ selected = 0
 
 [node name="VBoxContainer3" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
 margin_top = 144.0
-margin_right = 1000.0
+margin_right = 1012.0
 margin_bottom = 192.0
 custom_constants/separation = 20
 
-[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer3"]
+[node name="EnableAutoConnect" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer3"]
 margin_right = 24.0
 margin_bottom = 48.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer3"]
 margin_left = 44.0
-margin_right = 1000.0
+margin_right = 1012.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer3/VBoxContainer"]
-margin_right = 956.0
+margin_right = 968.0
 margin_bottom = 14.0
 text = "Enable Auto Connect"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer3/VBoxContainer"]
 margin_top = 34.0
-margin_right = 956.0
+margin_right = 968.0
 margin_bottom = 48.0
 text = "Auto-connect when the application first starts up."
 
 [node name="VBoxContainer4" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
 margin_top = 212.0
-margin_right = 1000.0
+margin_right = 1012.0
 margin_bottom = 260.0
 custom_constants/separation = 20
 
-[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer4"]
+[node name="HideMouseCursor" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer4"]
 margin_right = 24.0
 margin_bottom = 48.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer4"]
 margin_left = 44.0
-margin_right = 1000.0
+margin_right = 1012.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer4/VBoxContainer"]
-margin_right = 956.0
+margin_right = 968.0
 margin_bottom = 14.0
 text = "Hide Mouse Cursor"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer4/VBoxContainer"]
 margin_top = 34.0
-margin_right = 956.0
+margin_right = 968.0
 margin_bottom = 48.0
 text = "Mouse cursor will appear invisible if the application is not focused."
 
-[node name="VBoxContainer5" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
+[node name="Extension" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 280.0
 margin_right = 1000.0
 margin_bottom = 589.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension"]
 margin_right = 490.0
 margin_bottom = 309.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer"]
 margin_right = 490.0
 margin_bottom = 133.0
 custom_constants/separation = 20
 
-[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer2"]
+[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer2"]
 margin_right = 24.0
 margin_bottom = 24.0
 size_flags_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer2"]
 margin_left = 44.0
 margin_right = 490.0
 margin_bottom = 133.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_right = 446.0
 margin_bottom = 14.0
 text = "Interactable Extension!"
 
-[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 34.0
 margin_right = 446.0
 margin_bottom = 133.0
@@ -310,31 +381,31 @@ text = "Enable communication between application and the extension
 https://www.twitch.tv/extensions/streamgodotgame"
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer"]
 margin_top = 153.0
 margin_right = 490.0
 margin_bottom = 309.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer"]
 margin_right = 24.0
 margin_bottom = 24.0
 size_flags_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer"]
 margin_left = 44.0
 margin_right = 490.0
 margin_bottom = 156.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 446.0
 margin_bottom = 14.0
 text = "Announce Extension Link"
 
-[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 34.0
 margin_right = 446.0
 margin_bottom = 65.0
@@ -342,27 +413,27 @@ text = "This will spam a link in your channel to a pop-out extension.
 The command it will use is !extension"
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 85.0
 margin_right = 446.0
 margin_bottom = 116.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 146.0
 margin_bottom = 31.0
 text = "Minimum spam Timer:
 (Second)"
 align = 2
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 166.0
 margin_right = 246.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 80, 0 )
 text = "300"
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 136.0
 margin_right = 140.0
 margin_bottom = 156.0
@@ -370,20 +441,20 @@ rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 2
 text = "Sort Avatars"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension"]
 margin_left = 800.0
 margin_right = 1000.0
 margin_bottom = 309.0
 size_flags_horizontal = 10
 custom_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer2"]
 margin_right = 200.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 200, 0 )
 texture = ExtResource( 4 )
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer2"]
+[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer2"]
 margin_left = 91.0
 margin_top = 84.0
 margin_right = 200.0
@@ -391,7 +462,7 @@ margin_bottom = 104.0
 size_flags_horizontal = 10
 text = "Update Images"
 
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer5/VBoxContainer2"]
+[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/Extension/VBoxContainer2"]
 margin_top = 124.0
 margin_right = 200.0
 margin_bottom = 223.0
@@ -402,13 +473,13 @@ align = 2
 autowrap = true
 
 [node name="VBoxContainer6" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
-margin_top = 609.0
-margin_right = 1000.0
-margin_bottom = 677.0
+margin_top = 280.0
+margin_right = 1012.0
+margin_bottom = 345.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6"]
 margin_right = 327.0
-margin_bottom = 68.0
+margin_bottom = 65.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6/VBoxContainer"]
@@ -424,9 +495,9 @@ text = "Set thw Window size by dragging window's borders.
 Minimum size: 1280x720"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6"]
-margin_left = 700.0
-margin_right = 1000.0
-margin_bottom = 68.0
+margin_left = 712.0
+margin_right = 1012.0
+margin_bottom = 65.0
 size_flags_horizontal = 10
 custom_constants/separation = 20
 
@@ -442,7 +513,7 @@ margin_bottom = 19.0
 size_flags_horizontal = 10
 text = "Width"
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6/VBoxContainer2/HBoxContainer"]
+[node name="WindowWidth" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6/VBoxContainer2/HBoxContainer"]
 margin_left = 58.0
 margin_right = 138.0
 margin_bottom = 24.0
@@ -458,7 +529,7 @@ margin_bottom = 19.0
 size_flags_horizontal = 10
 text = "Height"
 
-[node name="LineEdit2" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6/VBoxContainer2/HBoxContainer"]
+[node name="WindowHeight" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6/VBoxContainer2/HBoxContainer"]
 margin_left = 220.0
 margin_right = 300.0
 margin_bottom = 24.0
@@ -466,18 +537,10 @@ rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 6
 text = "720"
 
-[node name="CheckBox" type="CheckBox" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer6/VBoxContainer2"]
-margin_left = 48.0
-margin_top = 44.0
-margin_right = 251.0
-margin_bottom = 68.0
-size_flags_horizontal = 6
-text = "Lock and Reset On Connect"
-
 [node name="VBoxContainer7" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer"]
-margin_top = 697.0
-margin_right = 1000.0
-margin_bottom = 745.0
+margin_top = 365.0
+margin_right = 1012.0
+margin_bottom = 413.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer7"]
@@ -496,9 +559,9 @@ margin_right = 515.0
 margin_bottom = 48.0
 text = "Deletes all data. (images, avatars, palettes, nametags, backgrounds and settings)"
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer7"]
-margin_left = 860.0
-margin_right = 1000.0
+[node name="DeleteAllButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer7"]
+margin_left = 872.0
+margin_right = 1012.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 10
@@ -559,30 +622,30 @@ margin_right = 1012.0
 margin_bottom = 48.0
 text = "Where are you streaming?"
 
-[node name="Twitch1" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer"]
+[node name="Twitch" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer"]
 margin_top = 168.0
 margin_right = 1012.0
 margin_bottom = 216.0
 custom_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch"]
 margin_right = 872.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch1/VBoxContainer"]
+[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch/VBoxContainer"]
 margin_right = 872.0
 margin_bottom = 14.0
 text = "Your Channel OAuth Token"
 
-[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch1/VBoxContainer"]
+[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch/VBoxContainer"]
 margin_top = 34.0
 margin_right = 872.0
 margin_bottom = 48.0
 text = "Gives Stream Godot Game information your Twitch Channel"
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch1"]
+[node name="TwitchButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch"]
 margin_left = 892.0
 margin_top = 6.0
 margin_right = 1012.0
@@ -590,12 +653,17 @@ margin_bottom = 42.0
 rect_min_size = Vector2( 120, 36 )
 size_flags_vertical = 4
 text = "Get OAuth"
+expand_icon = true
 
 [node name="Youtube" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 336.0
 margin_right = 1012.0
 margin_bottom = 384.0
 custom_constants/separation = 20
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Youtube"]
 margin_right = 872.0
@@ -1795,6 +1863,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/Minigames"]
+margin_right = 60.0
+margin_bottom = 40.0
 custom_constants/margin_right = 30
 custom_constants/margin_top = 20
 custom_constants/margin_left = 30
@@ -1821,7 +1891,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/SteamWorkshop"]
 margin_right = 1072.0
-margin_bottom = 1258.0
+margin_bottom = 1298.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 30
@@ -2237,7 +2307,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/Avatars"]
 margin_right = 1072.0
-margin_bottom = 820.0
+margin_bottom = 860.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 30
@@ -2870,231 +2940,6 @@ margin_bottom = 170.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_horizontal = 4
 
-[node name="ImportExport" type="ScrollContainer" parent="HSplitContainer/VSplitContainer2/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport"]
-margin_right = 1072.0
-margin_bottom = 668.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 30
-custom_constants/margin_top = 20
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer"]
-margin_left = 30.0
-margin_top = 20.0
-margin_right = 1042.0
-margin_bottom = 648.0
-size_flags_horizontal = 3
-custom_constants/separation = 60
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer"]
-margin_right = 803.0
-margin_bottom = 70.0
-size_flags_horizontal = 3
-custom_constants/separation = 60
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 359.0
-margin_bottom = 70.0
-size_flags_horizontal = 3
-custom_constants/separation = 20
-
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 359.0
-margin_bottom = 19.0
-text = "Import"
-
-[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 39.0
-margin_right = 359.0
-margin_bottom = 58.0
-text = "Load a .zip file containing images.png and data.txt"
-
-[node name="OptionButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 441.0
-margin_top = 22.0
-margin_right = 581.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 140, 0 )
-size_flags_horizontal = 6
-size_flags_vertical = 4
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 663.0
-margin_right = 803.0
-margin_bottom = 70.0
-size_flags_horizontal = 9
-custom_constants/separation = 20
-
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
-margin_right = 140.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 140, 0 )
-size_flags_horizontal = 8
-text = "Import Selected"
-
-[node name="Button2" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 45.0
-margin_right = 140.0
-margin_bottom = 70.0
-rect_min_size = Vector2( 140, 0 )
-size_flags_horizontal = 8
-text = "Import Folder"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer"]
-margin_top = 130.0
-margin_right = 803.0
-margin_bottom = 492.0
-size_flags_horizontal = 3
-custom_constants/separation = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 803.0
-margin_bottom = 58.0
-custom_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 391.0
-margin_bottom = 58.0
-size_flags_horizontal = 3
-custom_constants/separation = 20
-
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 391.0
-margin_bottom = 19.0
-text = "Export"
-
-[node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 39.0
-margin_right = 391.0
-margin_bottom = 58.0
-text = "Create a .zip file containing images and data"
-
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 698.0
-margin_top = 11.0
-margin_right = 803.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 0, 36 )
-size_flags_horizontal = 10
-size_flags_vertical = 4
-text = "Export Folder"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 78.0
-margin_right = 803.0
-margin_bottom = 362.0
-custom_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 391.0
-margin_bottom = 284.0
-size_flags_horizontal = 3
-custom_constants/separation = 20
-
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 391.0
-margin_bottom = 19.0
-text = "Avatars"
-
-[node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 39.0
-margin_right = 391.0
-margin_bottom = 239.0
-rect_min_size = Vector2( 250, 200 )
-
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_left = 125.0
-margin_top = 259.0
-margin_right = 265.0
-margin_bottom = 284.0
-rect_min_size = Vector2( 140, 0 )
-size_flags_horizontal = 4
-text = "Select All"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 411.0
-margin_right = 803.0
-margin_bottom = 284.0
-size_flags_horizontal = 3
-custom_constants/separation = 20
-
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_right = 392.0
-margin_bottom = 19.0
-text = "Background"
-
-[node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_top = 39.0
-margin_right = 392.0
-margin_bottom = 239.0
-rect_min_size = Vector2( 250, 200 )
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_left = 126.0
-margin_top = 259.0
-margin_right = 266.0
-margin_bottom = 284.0
-rect_min_size = Vector2( 140, 0 )
-size_flags_horizontal = 4
-text = "Select All"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer"]
-margin_top = 552.0
-margin_right = 803.0
-margin_bottom = 620.0
-size_flags_horizontal = 9
-custom_constants/separation = 20
-
-[node name="Spacer" type="TextureRect" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 443.0
-margin_bottom = 68.0
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 463.0
-margin_right = 643.0
-margin_bottom = 68.0
-size_flags_horizontal = 9
-custom_constants/separation = 20
-
-[node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 180.0
-margin_bottom = 19.0
-text = "Export Name"
-
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 39.0
-margin_right = 180.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 180, 0 )
-
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/ImportExport/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 663.0
-margin_top = 43.0
-margin_right = 803.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 140, 0 )
-size_flags_horizontal = 9
-size_flags_vertical = 8
-text = "Export Selected"
-
 [node name="ShopEditing" type="ScrollContainer" parent="HSplitContainer/VSplitContainer2/TabContainer"]
 visible = false
 anchor_right = 1.0
@@ -3110,7 +2955,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/ShopEditing"]
 margin_right = 1072.0
-margin_bottom = 740.0
+margin_bottom = 780.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 30
@@ -4442,6 +4287,7 @@ margin_bottom = 29.0
 size_flags_horizontal = 3
 
 [node name="UserEditing" type="ScrollContainer" parent="HSplitContainer/VSplitContainer2/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -4455,7 +4301,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing"]
-margin_right = 1060.0
+margin_right = 1072.0
 margin_bottom = 933.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -4467,38 +4313,38 @@ custom_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer"]
 margin_left = 30.0
 margin_top = 20.0
-margin_right = 1030.0
+margin_right = 1042.0
 margin_bottom = 913.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 11
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer"]
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 48.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 14.0
 text = "Spawning Defaults"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 34.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 48.0
 text = "Ahjust the settings for each viewer type"
 
 [node name="OptionButton" type="OptionButton" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 685.0
+margin_left = 743.0
 margin_top = 14.0
-margin_right = 825.0
+margin_right = 883.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 6
@@ -4509,19 +4355,19 @@ selected = 0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer"]
 margin_top = 59.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 333.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 274.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_left = 165.0
-margin_right = 325.0
+margin_left = 184.0
+margin_right = 344.0
 margin_bottom = 20.0
 size_flags_horizontal = 4
 custom_constants/separation = 30
@@ -4542,28 +4388,28 @@ selected = 0
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 40.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 54.0
 text = "Items"
 
 [node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 74.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 274.0
 rect_min_size = Vector2( 250, 200 )
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 510.0
-margin_right = 1000.0
+margin_left = 549.0
+margin_right = 1078.0
 margin_bottom = 274.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_left = 156.0
-margin_right = 333.0
+margin_left = 176.0
+margin_right = 353.0
 margin_bottom = 20.0
 size_flags_horizontal = 4
 custom_constants/separation = 30
@@ -4584,44 +4430,44 @@ selected = 0
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 margin_top = 40.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 54.0
 text = "Palettes"
 
 [node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 margin_top = 74.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 274.0
 rect_min_size = Vector2( 250, 200 )
 size_flags_horizontal = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer"]
 margin_top = 344.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 392.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 14.0
 text = "Force Default Refresh"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 34.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 48.0
 text = "Resets everyone to \"Spawning Defaults\""
 
 [node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 860.0
+margin_left = 938.0
 margin_top = 14.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 10
@@ -4630,31 +4476,31 @@ text = "Refresh"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer"]
 margin_top = 403.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 451.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 14.0
 text = "Clear Currency"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
 margin_top = 34.0
-margin_right = 490.0
+margin_right = 529.0
 margin_bottom = 48.0
 text = "Everyone's currency gets reset to 0"
 
 [node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer4"]
-margin_left = 860.0
+margin_left = 938.0
 margin_top = 14.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 140, 0 )
 size_flags_horizontal = 10
@@ -4663,55 +4509,55 @@ text = "Clear Currency"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer"]
 margin_top = 462.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 834.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_right = 1000.0
+margin_right = 1078.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 20.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 108.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 14.0
 text = "User Lists"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 34.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 48.0
 text = "Used for managing whitelisted, blacklisted and bot 	moderators."
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
-margin_left = 419.0
+[node name="BlackListCommonButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 458.0
 margin_top = 68.0
-margin_right = 580.0
+margin_right = 619.0
 margin_bottom = 88.0
 size_flags_horizontal = 4
 text = "Blacklist Common Bots"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 128.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 372.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_right = 320.0
+margin_right = 346.0
 margin_bottom = 244.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
-[node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
-margin_right = 320.0
+[node name="WhiteList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+margin_right = 346.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 3
@@ -4719,112 +4565,126 @@ size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 margin_top = 220.0
-margin_right = 320.0
+margin_right = 346.0
 margin_bottom = 244.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 279.0
+[node name="WhiteLineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 305.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 placeholder_text = "Enter username..."
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 283.0
-margin_right = 320.0
+[node name="WhiteButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 309.0
+margin_right = 346.0
 margin_bottom = 24.0
 text = "Add"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 340.0
-margin_right = 660.0
+margin_left = 366.0
+margin_right = 712.0
 margin_bottom = 244.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
-margin_right = 320.0
+[node name="BlackList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+margin_right = 346.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 margin_top = 220.0
-margin_right = 320.0
+margin_right = 346.0
 margin_bottom = 244.0
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_right = 279.0
+[node name="BlackLineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_right = 305.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 placeholder_text = "Enter username..."
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 283.0
-margin_right = 320.0
+[node name="BlackButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 309.0
+margin_right = 346.0
 margin_bottom = 24.0
 text = "Add"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 680.0
-margin_right = 1000.0
+margin_left = 732.0
+margin_right = 1078.0
 margin_bottom = 244.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
-[node name="ItemList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
-margin_right = 320.0
+[node name="ModList" type="ItemList" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
+margin_right = 346.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3"]
 margin_top = 220.0
-margin_right = 320.0
+margin_right = 346.0
 margin_bottom = 244.0
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3/HBoxContainer"]
-margin_right = 279.0
+[node name="ModLineEdit" type="LineEdit" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3/HBoxContainer"]
+margin_right = 305.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 placeholder_text = "Enter username..."
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3/HBoxContainer"]
-margin_left = 283.0
-margin_right = 320.0
+[node name="ModButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3/HBoxContainer"]
+margin_left = 309.0
+margin_right = 346.0
 margin_bottom = 24.0
 text = "Add"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer"]
 margin_top = 845.0
-margin_right = 1000.0
+margin_right = 1078.0
 margin_bottom = 893.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer5"]
-margin_right = 904.0
+margin_right = 982.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer"]
-margin_right = 904.0
+margin_right = 982.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Delete User Data"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer"]
 margin_top = 34.0
-margin_right = 904.0
+margin_right = 982.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
-text = "Everyone is reset to the default settinngs."
+text = "Everyone is reset to the default settings."
 
-[node name="Button" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 924.0
-margin_right = 1000.0
+[node name="DeleteAllButton" type="Button" parent="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 1002.0
+margin_right = 1078.0
 margin_bottom = 48.0
 text = "Delete All"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+window_title = "Emin misiniz?"
+dialog_text = "Her şeyi silmek istediğinizden emin misiniz?"
 [connection signal="pressed" from="HSplitContainer/VSplitContainer/ConnectButton" to="." method="_on_ConnectButton_pressed"]
 [connection signal="item_selected" from="HSplitContainer/VSplitContainer/MenuList" to="." method="_on_ItemList_item_selected"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/PanelContainer/MarginContainer/HBoxContainer/DocButton" to="." method="_on_DocButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer7/DeleteAllButton" to="." method="_on_DeleteAllButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/TabContainer/LoginDetails/MarginContainer/VBoxContainer/Twitch/TwitchButton" to="." method="_on_TwitchButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/WhiteButton" to="." method="_on_WhiteButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2/HBoxContainer/BlackButton" to="." method="_on_BlackButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer2/TabContainer/UserEditing/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer3/HBoxContainer/ModButton" to="." method="_on_ModButton_pressed"]

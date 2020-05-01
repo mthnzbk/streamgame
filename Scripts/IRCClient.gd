@@ -9,10 +9,10 @@ const PORT := 6667
 const BOTNAME := "BenceEmerik"
 
 var CHANNEL := "benceemerik"
-var FILTER_LIST = ["streamelements", "streamlabs"]
-var USER_LIST = []
+var FILTER_LIST:Array
+var USER_LIST:Array = []
 var ready = false
-var first_msg_list:Array = []
+#var first_msg_list:Array = []
 
 signal connected
 signal user_part(user)
@@ -22,6 +22,9 @@ var is_connection := false
 
 
 func _ready():
+	var settings = Ayarlar.load()
+	FILTER_LIST = settings["user_editing"]["blacklist"]
+	print(FILTER_LIST)
 	set_process(false)
 
 func client_connect():
@@ -35,6 +38,8 @@ func client_connect():
 
 	connect("connected", self, "chat_connect")
 
+func client_disconnect():
+	client.disconnect_from_host()
 		
 func _process(delta):
 		
@@ -57,7 +62,7 @@ func _process(delta):
 			data_list.remove(data_list.size()-1)
 			
 			for data in data_list:
-				
+				print(data)
 				if "End of /NAMES list" in data:
 					ready = true
 				
@@ -114,11 +119,6 @@ func chat_connect():
 
 func send_message(): pass
 
-
-func _on_Button_pressed():
-	BasicHttpServer.server_bind()
-	var url = "https://id.twitch.tv/oauth2/authorize?client_id="+OAuth.client_id+"&redirect_uri="+OAuth.redirect_uri+"&response_type=code&scope="+OAuth.scope
-	OS.shell_open(url)
 
 
 

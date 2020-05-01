@@ -5,6 +5,11 @@ var is_connect = false
 var ping_timer:Timer = Timer.new()
 var ping_timeout_timer:Timer = Timer.new()
 
+signal message(user, message, args)
+#signal subscribed(subscriber)
+#signal donate(donor)
+#signal cheer(user)
+
 func _ready():
 	set_process(false)
 	add_child(ping_timer)
@@ -26,6 +31,9 @@ func listen():
 	ping_timeout_timer.connect("timeout", self, "ping_timeout")
 	
 	repeat_connect()
+	
+func stop():
+	client.disconnect_from_host()
 
 
 func repeat_connect():
@@ -79,16 +87,20 @@ func data_received():
 		if packet["type"] == "MESSAGE":
 			var message = parse_json(packet["type"]["message"])
 			if message["data"]["context"] == "cheer":
-				pass
-				#emit_signal("dance")
-			
-			if "subgift" in message["data"]["context"]:
-				pass
-				#emit_signal("dance")
+				emit_signal("message", message["data"]["user_name"], "cheer")
 				
+				
+			if "subgift" in message["data"]["context"]:
+				emit_signal("message", message["data"]["user_name"], "subgift", message["data"]["recipient_user_name"])
+				
+			
+			if "anonsubgift" in message["data"]["context"]:
+				emit_signal("message", message["data"]["user_name"], "anonsubgift", message["data"]["recipient_user_name"])
+				
+			
 			if "sub" in message["data"]["context"]:
-				pass
-				#emit_signal("dance")
+				emit_signal("message", message["data"]["user_name"], "sub")
+				
 
 
 		if packet["type"] == "RESPONSE":
@@ -125,6 +137,6 @@ func connection_error():
 	print("err")
 	ping_timer.stop()
 	
-func server_close_request(code=1000, clean=false):
-	print(code," s ", clean)
+func server_close_request(code, reason):
+	print(code," s ", reason)
 	ping_timer.stop()

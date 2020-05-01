@@ -13,19 +13,14 @@ var http:HTTPRequest = HTTPRequest.new()
 
 func _ready():
 	add_child(http)
-	
-#	validate_token()
+	var settings = Ayarlar.load()
+	if settings["twitch"]["access_token"] != "":
+		if !validate_token().resume():
+			refresh_token().resume()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-"""
-In the new Twitch API:
-curl -H "Authorization: Bearer <access token>" https://api.twitch.tv/helix/
-
-In Twitch API v5:
-curl -H "Authorization: OAuth <access token>" https://api.twitch.tv/kraken/
-"""
 
 func refresh_token():
 	var settings = Ayarlar.load()
@@ -48,24 +43,23 @@ func _refresh_token(result, response_code, headers, body:PoolByteArray):
 	if response_code == 200:
 		__refresh =  parse_json(body.get_string_from_utf8())
 
-func validate_token():
+func validate_token() -> bool:
 	http.connect("request_completed", self, "_validate_token")
 	var settings = Ayarlar.load()
-	if settings["twitch"]["access_token"] != "":
-		var headers := PoolStringArray()
-		headers.append("Authorization: OAuth {token}".format({"token": settings["twitch"]["access_token"]}))
-		http.request("https://id.twitch.tv/oauth2/validate", headers)
-		yield(http, "request_completed")
-		http.disconnect("request_completed", self, "_validate_token")
-		print(__validate)
+	
+	var headers := PoolStringArray()
+	headers.append("Authorization: OAuth {token}".format({"token": settings["twitch"]["access_token"]}))
+	http.request("https://id.twitch.tv/oauth2/validate", headers)
+	yield(http, "request_completed")
+	http.disconnect("request_completed", self, "_validate_token")
+	print(__validate)
+	if __validate:
+		settings["twitch"]["login_id"] = __validate["user_id"]
+		settings["twitch"]["login_name"] = __validate["login"]
+		Ayarlar.save(settings)
+		return true
 		
-		if __validate:
-			settings["twitch"]["login_id"] = __validate["user_id"]
-			settings["twitch"]["login_name"] = __validate["login"]
-			Ayarlar.save(settings)
-			return true
-			
-		else: return false
+	else: return false
 
 
 func _validate_token(result, response_code, headers, body:PoolByteArray):
